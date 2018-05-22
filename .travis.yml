@@ -23,6 +23,7 @@ addons:
 
 
 before_install:
+- pwd
 - make --version # Waiting for version 4.0 to be able to use --output-sync=recurse
 # https://www.gnu.org/software/make/manual/html_node/Parallel-Output.html
 - pip install --user psutil
