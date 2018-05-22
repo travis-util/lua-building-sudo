@@ -50,7 +50,7 @@ install:
 - ls --color
 - ./configure --help
 - ./configure --prefix=$PREFIX
-- make build && make install
+# - make build && make install
 - make bootstrap
 # --jobs=$JOBS
 - ls --color $PREFIX
