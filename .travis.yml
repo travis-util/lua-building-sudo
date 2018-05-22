@@ -37,8 +37,8 @@ install:
 
 
 script:
-- make linux --jobs=$JOBS && make test --jobs=$JOBS && make install --jobs=$JOBS
-# - ./configure --prefix=$PREFIX
+- make linux --jobs=$JOBS && make test --jobs=$JOBS
+- src/lua hello.lua
 
 
 after_script:
