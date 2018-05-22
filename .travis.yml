@@ -38,7 +38,7 @@ install:
 
 script:
 - make linux --jobs=$JOBS && make test --jobs=$JOBS
-- src/lua hello.lua
+- src/lua ../hello.lua
 
 
 after_script:
