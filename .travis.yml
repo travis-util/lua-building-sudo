@@ -51,7 +51,8 @@ install:
 - ./configure --help
 - ./configure --prefix=$PREFIX
 - make build && make install
-- make bootstrap --jobs=$JOBS
+- make bootstrap
+# --jobs=$JOBS
 - ls --color $PREFIX
 - ls --color $PREFIX/bin
 
