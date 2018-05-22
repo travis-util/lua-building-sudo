@@ -74,6 +74,8 @@ script:
 
 
 after_script:
+- luarocks
+- luarocks help path
 - cat /proc/loadavg
 - echo $JOBS
 # - ls -rtl $PKG_CONFIG_PATH
