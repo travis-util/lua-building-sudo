@@ -37,6 +37,7 @@ install:
 - tar --gzip --extract --file=$LUA_VERSION.tar.gz
 - cd $LUA_VERSION
 - ls --color
+- find . -name luaconf.h
 - cat README
 - cat Makefile
 - elinks -dump-color-mode 4 -dump doc/readme.html
