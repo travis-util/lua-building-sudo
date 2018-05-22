@@ -33,11 +33,11 @@ install:
 - tar --gzip --extract --file=$LUA_VERSION.tar.gz
 - cd $LUA_VERSION
 - ls --color
-- ./configure --help || true
+- cat README
 
 
 script:
-- ./configure && make --jobs=$JOBS && make test --jobs=$JOBS && make install --jobs=$JOBS
+- make --jobs=$JOBS && make test --jobs=$JOBS && make install --jobs=$JOBS
 # - ./configure --prefix=$PREFIX
 
 
