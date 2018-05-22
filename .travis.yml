@@ -37,7 +37,7 @@ install:
 
 
 script:
-- make --jobs=$JOBS && make test --jobs=$JOBS && make install --jobs=$JOBS
+- make linux --jobs=$JOBS && make test --jobs=$JOBS && make install --jobs=$JOBS
 # - ./configure --prefix=$PREFIX
 
 
