@@ -74,6 +74,8 @@ script:
 
 
 after_script:
+- lua --help
+- luac
 - luarocks
 - luarocks help path
 - cat /proc/loadavg
