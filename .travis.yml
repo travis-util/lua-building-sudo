@@ -14,11 +14,10 @@ env:
   - LUA_VERSION=lua-5.3.4
 
 
-# addons:
-  # apt:
-    # packages:
-    # as requested by configure
-    # - libopenjp2-7-dev # since Ubuntu 16.04 (libopenjpeg2 for poppler-0.62.0)
+addons:
+  apt:
+    packages:
+    - elinks # For dysplaying php files on console.# addons:
 
 
 before_install:
@@ -34,6 +33,7 @@ install:
 - cd $LUA_VERSION
 - ls --color
 - cat README
+- elinks -dump-color-mode 4 -dump doc/readme.html
 
 
 script:
