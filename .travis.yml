@@ -14,7 +14,7 @@ env:
   - LUA_VERSION=lua-5.3.4
   - LUAROCKS_VERSION=luarocks-2.4.4
   # - PATH=$(pwd)/$LUA_VERSION/src:$PATH
-  - PATH=/home/travis/build/travis-util/lua-building/$LUA_VERSION/bin:$PATH
+  - PATH=/home/travis/build/travis-util/lua-building/$LUA_VERSION/install/bin:$PATH
 
 
 addons:
@@ -40,6 +40,8 @@ install:
 - elinks -dump-color-mode 4 -dump doc/readme.html
 - make linux --jobs=$JOBS && make test --jobs=$JOBS && make local
 - ls --color
+- ls --color install
+- ls --color install/bin || true
 - cd ..
 
 - wget --quiet https://luarocks.org/releases/$LUAROCKS_VERSION.tar.gz
