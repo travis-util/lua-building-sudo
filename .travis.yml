@@ -27,14 +27,6 @@ before_install:
 - pip install --user psutil
 - JOBS="$(python -c 'import psutil ; print len(psutil.Process().cpu_affinity())')" # 2 jobs at a time in make
 
-- wget http://ftp.gnome.org/pub/gnome/sources/glib/$GLIB_VERSION/$GLIB.tar.xz # 2.1s
-# - wget https://git.gnome.org/browse/glib/snapshot/$GLIB.tar.xz # 35s
-- tar --xz --extract --file=$GLIB.tar.xz
-- pushd $GLIB
-- ./configure --help
-- ./configure --prefix=$PREFIX
-- make --jobs=$JOBS && make install --jobs=$JOBS
-- popd
 
 install:
 - wget --quiet https://www.lua.org/ftp/$LUA_VERSION.tar.gz
@@ -43,8 +35,11 @@ install:
 - ls --color
 - ./configure --help || true
 
+
 script:
 - ./configure && make --jobs=$JOBS && make test --jobs=$JOBS && make install --jobs=$JOBS
+# - ./configure --prefix=$PREFIX
+
 
 after_script:
 - cat /proc/loadavg
