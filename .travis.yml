@@ -14,6 +14,7 @@ env:
   - LUA_VERSION=lua-5.3.4
   - LUAROCKS_VERSION=luarocks-2.4.4
   # - PATH=$(pwd)/$LUA_VERSION/src:$PATH
+  - PATH=/home/travis/build/travis-util/lua-building/$LUA_VERSION/src:$PATH
 
 
 addons:
