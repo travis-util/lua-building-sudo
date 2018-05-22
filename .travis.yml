@@ -67,7 +67,7 @@ script:
 - lua hello.lua
 - lua -e 'print("Hello World")'
 - command -v luarocks
-- luarocks install luasocket
+- sudo luarocks install luasocket
 - lua -e 'require "socket"'
 
 
