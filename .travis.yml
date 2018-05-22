@@ -12,6 +12,8 @@ env:
   - PREFIX=/tmp/local
   - PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig
   - LUA_VERSION=lua-5.3.4
+  - LUAROCKS_VERSION=luarocks-2.4.4
+  - PATH=$LUA_VERSION/src:$PATH
 
 
 addons:
@@ -34,11 +36,22 @@ install:
 - ls --color
 - cat README
 - elinks -dump-color-mode 4 -dump doc/readme.html
+- make linux --jobs=$JOBS && make test --jobs=$JOBS
+- cd ..
+
+- wget --quiet https://luarocks.org/releases/$LUAROCKS_VERSION.tar.gz
+- tar --gzip --extract --file=$LUAROCKS_VERSION.tar.gz
+- cd $LUAROCKS_VERSION
+- ls --color
+- ./configure --help
+- ./configure --prefix=$PREFIX
+- make bootstrap --jobs=$JOBS
+- ls --color $PREFIX
+- ls --color $PREFIX/bin
 
 
 script:
-- make linux --jobs=$JOBS && make test --jobs=$JOBS
-- src/lua ../hello.lua
+- lua ../hello.lua
 
 
 after_script:
