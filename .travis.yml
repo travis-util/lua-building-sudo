@@ -1,0 +1,53 @@
+# dist: xenial
+# group: edge???
+# group: travis_latest
+language: cpp
+compiler:
+  - clang
+  # - gcc
+
+
+env:
+  global:
+  - PREFIX=/tmp/local
+  - PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig
+  - LUA_VERSION=lua-5.3.4
+
+
+# addons:
+  # apt:
+    # packages:
+    # as requested by configure
+    # - libopenjp2-7-dev # since Ubuntu 16.04 (libopenjpeg2 for poppler-0.62.0)
+
+
+before_install:
+- make --version # Waiting for version 4.0 to be able to use --output-sync=recurse
+# https://www.gnu.org/software/make/manual/html_node/Parallel-Output.html
+- pip install --user psutil
+- JOBS="$(python -c 'import psutil ; print len(psutil.Process().cpu_affinity())')" # 2 jobs at a time in make
+
+- wget http://ftp.gnome.org/pub/gnome/sources/glib/$GLIB_VERSION/$GLIB.tar.xz # 2.1s
+# - wget https://git.gnome.org/browse/glib/snapshot/$GLIB.tar.xz # 35s
+- tar --xz --extract --file=$GLIB.tar.xz
+- pushd $GLIB
+- ./configure --help
+- ./configure --prefix=$PREFIX
+- make --jobs=$JOBS && make install --jobs=$JOBS
+- popd
+
+install:
+- wget --quiet https://www.lua.org/ftp/$LUA_VERSION.tar.gz
+- tar --gzip --extract --file=$LUA_VERSION.tar.gz
+- cd $LUA_VERSION
+- ls --color
+- ./configure --help || true
+
+script:
+- ./configure && make --jobs=$JOBS && make test --jobs=$JOBS && make install --jobs=$JOBS
+
+after_script:
+- cat /proc/loadavg
+- echo $JOBS
+# - ls -rtl $PKG_CONFIG_PATH
+
