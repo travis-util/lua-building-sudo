@@ -10,11 +10,11 @@ compiler:
 env:
   global:
   - PREFIX=/tmp/local
-  - PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig
+  # - PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig
   - LUA_VERSION=lua-5.3.4
   - LUAROCKS_VERSION=luarocks-2.4.4
   # - PATH=$(pwd)/$LUA_VERSION/src:$PATH
-  - PATH=/home/travis/build/travis-util/lua-building/$LUA_VERSION/install/bin:$PATH
+  - PATH=$PREFIX/bin:/home/travis/build/travis-util/lua-building/$LUA_VERSION/install/bin:$PATH
 
 
 addons:
@@ -59,6 +59,9 @@ install:
 
 script:
 - lua ../hello.lua
+- lua -e 'print("Hello World")'
+- luarocks install luasocket
+- lua -e 'require "socket"'
 
 
 after_script:
