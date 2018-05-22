@@ -13,7 +13,7 @@ env:
   - PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig
   - LUA_VERSION=lua-5.3.4
   - LUAROCKS_VERSION=luarocks-2.4.4
-  - PATH=$LUA_VERSION/src:$PATH
+  - PATH=$(pwd)/$LUA_VERSION/src:$PATH
 
 
 addons:
