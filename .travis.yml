@@ -1,11 +1,7 @@
-# dist: xenial
-# group: edge???
-# group: travis_latest
 language: cpp
 sudo: true
 compiler:
   - clang
-  # - gcc
 
 
 env:
@@ -16,13 +12,13 @@ env:
   - LUA_VERSION=lua-5.3.4
   - LUAROCKS_VERSION=luarocks-2.4.4
   # - PATH=$(pwd)/$LUA_VERSION/src:$PATH
-  - PATH=$PREFIX/bin:/home/travis/build/travis-util/lua-building/$LUA_VERSION/install/bin:$PATH
+  # - PATH=$PREFIX/bin:/home/travis/build/travis-util/lua-building/$LUA_VERSION/install/bin:$PATH
 
 
 addons:
   apt:
     packages:
-    - elinks # For dysplaying php files on console.# addons:
+    - elinks # For dysplaying readme.html
 
 
 before_install:
@@ -59,6 +55,7 @@ install:
 # --jobs=$JOBS
 # - ls --color $PREFIX
 # - ls --color $PREFIX/bin
+- find /usr/local -name luarocks
 - cd ..
 
 
@@ -70,6 +67,7 @@ script:
 - sudo luarocks install luasocket
 # Error: Your user does not have write permissions in /usr/local/lib/luarocks/rocks 
 # -- you may want to run as a privileged user or use your local tree with --local.
+- find /usr/local -name socket.lua
 - lua -e 'require "socket"'
 
 
