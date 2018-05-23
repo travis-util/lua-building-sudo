@@ -76,6 +76,8 @@ script:
 - lua -e 'require "wsapi.xavante"'
 - apt-cache policy libfcgi-dev
 - apt-cache policy libfcgi0ldbl
+- sudo -H luarocks install wsapi-fastcgi
+- lua -e 'require "wsapi.fastcgi"'
 
 
 after_script:
