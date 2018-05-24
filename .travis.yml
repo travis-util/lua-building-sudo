@@ -89,6 +89,9 @@ after_script:
 - luarocks
 - luarocks list
 - luarocks help path
+
+- sudo -H luarocks install luasec # OPENSSL_DIR=/usr/lib/x86_64-linux-gnu
+
 - apt-cache policy libfcgi-dev
 - apt-cache policy libfcgi0ldbl
 - cat /proc/loadavg
