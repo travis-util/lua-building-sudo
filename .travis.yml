@@ -59,32 +59,38 @@ install:
 - find /usr/local -name luarocks
 - cd ..
 
-
-script:
-- command -v lua
-- lua hello.lua
-- lua -e 'print("Hello World")'
-- command -v luarocks
 - sudo -H luarocks install luasocket
 # Error: Your user does not have write permissions in /usr/local/lib/luarocks/rocks 
 # -- you may want to run as a privileged user or use your local tree with --local.
 - find /usr/local -name socket.lua
-- lua -e 'require "socket"'
 - sudo -H luarocks install wsapi
-- lua -e 'require "wsapi"'
 - sudo -H luarocks install wsapi-xavante
+- sudo -H luarocks install wsapi-fcgi
+
+
+before_script:
+- command -v lua
+- command -v luac
+- command -v luarocks
+- lua -e 'require "socket"'
+- lua -e 'require "wsapi"'
 - lua -e 'require "wsapi.xavante"'
-- apt-cache policy libfcgi-dev
-- apt-cache policy libfcgi0ldbl
-- sudo -H luarocks install wsapi-fastcgi
 - lua -e 'require "wsapi.fastcgi"'
+
+
+script:
+- lua hello.lua
+- lua -e 'print("Hello World")'
 
 
 after_script:
 - lua --help
 - luac
 - luarocks
+- luarocks list
 - luarocks help path
+- apt-cache policy libfcgi-dev
+- apt-cache policy libfcgi0ldbl
 - cat /proc/loadavg
 - echo $JOBS
 # - ls -rtl $PKG_CONFIG_PATH
