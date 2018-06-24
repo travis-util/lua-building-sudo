@@ -1,4 +1,6 @@
-# lua-building
+# lua-building-sudo
+
+[![Build Status](https://travis-ci.org/travis-util/lua-building-sudo.svg?branch=master)](https://travis-ci.org/travis-util/lua-building-sudo)
 
 * https://luarocks.org/#quick-start
 * https://tracker.debian.org/pkg/luarocks
