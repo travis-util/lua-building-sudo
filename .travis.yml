@@ -2,8 +2,8 @@ dist: xenial
 language: c
 sudo: true
 compiler:
-  - clang
-  - gcc
+- clang
+- gcc
 
 
 env:
